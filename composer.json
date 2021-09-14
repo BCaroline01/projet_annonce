@@ -1,0 +1,12 @@
+{
+    "require": {
+        "altorouter/altorouter": "1.1.0",
+        "twig/twig": "3.3.0",
+        "qferr/mjml-php": "^1.1",
+        "mpdf/mpdf": "^8.0",
+        "phpunit/phpunit": "9"
+    },
+    "autoload": {
+        "classmap": ["controllers", "models"]
+    }
+}

@@ -1,0 +1,26 @@
+{% extends "layout.twig" %}
+
+{% block title %}{% for ad in ads %}<title>TheGoodCorner | {{ad.title}}</title> {% endfor %}{% endblock %}
+
+{% block content %}
+<section class="annonce">
+    {% for ad in ads %}
+    <h1 class="title">{{ad.title}}</h1>
+    {% endfor %}
+
+    {% for ad in ads %}
+    <div class="container">
+        <div class="img-container"><img src="{{ad.image}}" alt="Photo de l'annonce"></div>
+        <ul>
+            <li>Date de création : <span>{{ad.date|date("d/m/Y")}}</span> </li>
+            <li>Catégorie : <span>{{ad.type}}</span> </li>
+            <li>Prix : <span>{{ad.price}} €</span></li>
+        </ul>
+        <h2>Description</h2>
+        <p>{{ad.content}}</p>
+
+        <button><a href="pdf{{ad.idAds}}" target="_blank">Générer un PDF de l'annonce</a></button>
+    </div>
+    {% endfor %}
+</section>
+{% endblock %}

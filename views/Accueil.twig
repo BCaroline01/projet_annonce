@@ -1,0 +1,86 @@
+{% extends "layout.twig" %}
+
+
+{% block title %} <title> TheGoodCorner | Site d'annonces gratuite</title> {% endblock title %}
+
+{% block header %}
+<header class="indexheader">
+    <div>
+        <a href="./insertview">Créer une annonce</a>
+        <form action="./search?p=1" method="POST" id="form">
+            <select name="type" id="select">
+                <option value="" disabled selected>Catégorie</option>
+                <option value="Jardinage">Jardinage</option>
+                <option value="Multimedia">Multimedia</option>
+                <option value="Mode">Mode</option>
+                <option value="Meubles">Meubles</option>
+                <option value="Loisirs">Loisirs</option>
+                <option value="Véhicules">Véhicules</option>
+                <option value="Animaux">Animaux</option>
+                <option value="Services">Services</option>
+                <option value="Divers">Divers</option>
+            </select>
+        </form>
+    </div>
+</header>
+{% endblock %}
+
+{% block content %}
+<h1>Les dernières annonces</h1>
+<div class="page">
+    <a href='./?p={{ i - nbPage }}'>&laquo;</a>
+    {% set nbPage = ads['1'] %}
+    {% for i in 1 .. nbPage %}
+    <a href='./?p={{ i }}'>{{ i }}</a>
+    {% endfor %}
+    <a href='./?p={{ i + nbPage }}'>&raquo;</a>
+</div>
+<section>
+    {% for ad in ads['0'] %}
+    <article class="card">
+        <span>
+            <h2>{{ad.title}}</h2>
+        </span>
+        <div class="card-content">
+            <div class="picture">
+                <img src="{{ad.image}}" alt="">
+            </div>
+            <div class="preview-content">
+                <p>{{ad.date| date("d/m/y")}}</p>
+                <p>{{ad.price}} €</p>
+                <p>{{ad.type}}</p>
+                <button><a href="ads?id={{ad.idAds}}">Afficher plus</a></button>
+            </div>
+        </div>
+    </article>
+    {% endfor %}
+
+
+    <article id="mobileCard">
+        {% for ad in ads['0'] %}
+        <div class="card2">
+            <div class="img-container2"><img src="{{ad.image}}" alt=""></div>
+            <div class="preview-content2">
+                <span>
+                    <h3>{{ad.title}}</h3>
+                </span>
+                <div>
+                    <p>{{ad.date| date("d/m/y")}}</p>
+                    <p>{{ad.price}} €</p>
+                </div>
+                <p>{{ad.type}}</p>
+                <button><a href="ads?id={{ad.idAds}}">Afficher plus</a></button>
+            </div>
+        </div>
+        {% endfor %}
+    </article>
+</section>
+<div class="page">
+    <a href='./?p={{ i - nbPage }}'>&laquo;</a>
+    {% set nbPage = ads['1'] %}
+    {% for i in 1 .. nbPage %}
+    <a href='./?p={{ i }}'>{{ i }}</a>
+    {% endfor %}
+    <a href='./?p={{ i + nbPage }}'>&raquo;</a>
+</div>
+{% endblock %}

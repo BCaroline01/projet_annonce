@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    {% block head %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css" />
+    {% block title %}{% endblock %}
+    {% endblock %}
+</head>
+
+<body>
+    {% block header %}
+    <header class="allheader">
+        <div class="logoheader">
+            <a href="./"><img src="./ressources/logo.png" alt="logo"></a>
+        </div>
+        <div class="btnheader">
+            <a class="addad" href="./insertview">Créer une annonce</a>
+            <form action="./search?p=1" method="POST" id="form">
+                <select name="type" id="select">
+                    <option value="" disabled selected>Catégorie</option>
+                    <option value="Jardinage">Jardinage</option>
+                    <option value="Multimedia">Multimedia</option>
+                    <option value="Mode">Mode</option>
+                    <option value="Meubles">Meubles</option>
+                    <option value="Loisirs">Loisirs</option>
+                    <option value="Véhicules">Véhicules</option>
+                    <option value="Animaux">Animaux</option>
+                    <option value="Services">Services</option>
+                    <option value="Divers">Divers</option>
+                </select>
+            </form> 
+        </div>
+    </header>
+    {% endblock %}
+    <main id="content">
+        {% block content %}{% endblock %}
+        {% block content2 %}{% endblock %}
+    </main>
+    <footer id="footer">
+        {% block footer %}
+        <div class="list_footer">
+            <div class="list_categories">
+                <a href="./insertview">Créer une annonce</a>
+                <h3>Catégories</h3>
+                <div class="ulBox">
+                <ul>
+                    <li>Meubles</li>
+                    <li>Loisirs</li>
+                    <li>Véhicules</li>
+                </ul>
+                <ul>
+                    <li>Mode</li>
+                    <li>Multimédia</li>
+                    <li>Animaux</li>
+                </ul>
+            </div>
+            </div>
+            <div class="social_media">
+                <ul>
+                    <li><img src="./ressources/facebook_icon.png" alt="facebook icon"></li>
+                    <li><img src="./ressources/instagram_icon.png" alt="instagram icon"></li>
+                    <li><img src="./ressources/youtube_icon.png" alt="youtube icon"></li>
+                    <li><img src="./ressources/twitter_icon.png" alt="twitter icon"></li>
+                </ul>
+            </div>
+            <img class="logo" src="./ressources/logo_footer.png" alt="logo">
+        </div>
+        <p>&copy; Copyright 2020 : The Good Corner.</p>
+       
+    </footer>
+{% endblock %}
+{% block javascript %}
+    <script>
+        
+        var selectElem = document.getElementById('select');
+
+        selectElem.addEventListener('change', function () {
+            
+        var value = selectElem.value;
+                if(value != null){
+                    document.getElementById('form').submit();
+                }  
+        });
+    </script> 
+{% endblock %}
+</body>
+
+</html>

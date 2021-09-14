@@ -1,0 +1,61 @@
+{% extends "layout.twig" %}
+
+{% block title %} <title> TheGoodCorner | Site d'annonces gratuite</title> {% endblock title %}
+
+{% block content %}
+
+<h1 class="title">Ajouter une annonce</h1>
+
+<form action="./sendValidate" method="post" enctype="multipart/form-data">
+    <div id="image">
+        <input type="file" name="image" accept="image/*" id="imgInp" value="./ressources/camera.png">
+        <img id="preview" src="./ressources/camera.png" alt="your image" />
+        <i>Formats acceptés : 'JPG', 'JPEG', 'PNG', 'GIF', 'JFIF' - Max 2Mo.</i>
+        <label for="imgInp" class="labelimage" >Choisir une image</label>
+    </div>
+    <div>
+        <label for="title">Titre de l'annonce</label>
+        <input type="text" name="title" id="title" required>
+    </div>
+    <div>
+        <label for="description">Description de l'annonce</label>
+        <textarea name="content" id="description" cols="30" rows="10" required></textarea>
+    </div>
+    <div>
+        <label for="price">Prix</label>
+        <input type="number" name="price" id="price" placeholder="€" step=".01" required>
+    </div>
+    <div>
+        <select name="type" id="" required>
+            <option value="" disabled selected>Catégorie</option>
+            <option value="Jardinage">Jardinage</option>
+            <option value="Multimedia">Multimedia</option>
+            <option value="Mode">Mode</option>
+            <option value="Meubles">Meubles</option>
+            <option value="Loisirs">Loisirs</option>
+            <option value="Véhicules">Véhicules</option>
+            <option value="Animaux">Animaux</option>
+            <option value="Services">Services</option>
+            <option value="Divers">Divers</option>
+        </select>
+    </div>
+    <div>
+        <label for="mail">E-mail</label>
+        <input type="mail" name="mail" id="mail" placeholder="@" required>
+    </div>
+    <div>
+        <input class="btn_form" type="submit" value="Déposer l'annonce" name="submit">
+    </div>
+</form>
+<script>
+    imgInp.onchange = evt => {
+  const [file] = imgInp.files
+  if (file) {
+    preview.src = URL.createObjectURL(file)
+  }
+}
+</script>
+
+{% endblock  %}
+
+
